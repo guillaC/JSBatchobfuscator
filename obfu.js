@@ -1,7 +1,7 @@
 function sayCode() {
     var textarea = document.getElementById('Code');
     var textareaobf = document.getElementById('ObfCode');
-	var set = Math.random().toString(36).substring(10); //random set
+    var set = "a"+Math.random().toString(36).substring(10); //random set
     var setlettre = "Set "+set+"=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //62 char
     var code = textarea.value; //code contiendra mon code non obfusqué
     var codeobfu = "" //codeobfu contiendra mon code obfusqué
