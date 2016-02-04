@@ -1,10 +1,10 @@
-function sayCode() {
+function printCode() {
     var textarea = document.getElementById('Code');
     var textareaobf = document.getElementById('ObfCode');
     var set = "a"+Math.random().toString(36).substring(10); //random set
     var setlettre = "Set "+set+"=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //62 char
     var code = textarea.value; //code contiendra mon code non obfusqué
-    var codeobfu = "" //codeobfu contiendra mon code obfusqué
+    var codeobfu = ""; //codeobfu contiendra mon code obfusqué
 
     var lettertab = {
         "0": "%"+set+":~0,1%",
@@ -72,18 +72,18 @@ function sayCode() {
         " ": "^" + '\n '
     };
 
-    if (code.indexOf("=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") != -1) { //on check si le code est déjà obfu
+    if (code.indexOf("=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") != -1) {
         console.log("code déjà obfu");
-        return; // On sors de la fonction
+        return;
     }
 
-    if (code.indexOf("<script>") != -1) { //on check si l'user nous prendrait pas pour des cons
+    if (code.indexOf("<script>") != -1) {
         console.log("XSS");
         window.location = "https://www.youtube.com/watch?v=-0AlZ3a32Lk"; //lul
-        return; // On sors de la fonction
+        return;
     }
 
-    console.log(code) //on affiche le code dans la console
+    console.log(code)
     for (var i = 0; i < code.length; i++) {
         if (lettertab[code[i]]) {
             codeobfu += lettertab[code[i]];
@@ -91,5 +91,5 @@ function sayCode() {
             codeobfu += code[i];
         }
     }
-    textareaobf.value = '@echo off\n' + setlettre + '\ncls' + '\n' + codeobfu; //On écris le code obfu dans le textareaobf avec notre Set
+    textareaobf.value = '@echo off\n' + setlettre + '\ncls' + '\n' + codeobfu; //On écris le code obfu dans le textareaobf avec notre Set, un CLS & @echo off en début de code
 }
