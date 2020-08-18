@@ -2,16 +2,15 @@ function printCode() {
     var textarea = document.getElementById('Code');
     var textareaobf = document.getElementById('ObfCode');
     var set = "a" + Math.random().toString(36).substring(10); //random set
-    var letter = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //62 char
-    var setlettre = "Set " + set + "=" + letter;
+    var letters = Array.from("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").sort(() => Math.random() - 0.5).join('');
+    var setlettre = "Set " + set + "=" + letters;
     var code = textarea.value;
     var codeobfu = "";
     var lettertab = {};
-    for (var i = 0; i < letter.length; i++) {
-        lettertab[letter[i]] = "%" + set + ":~" + i + ",1%";
+    for (var i = 0; i < letters.length; i++) {
+        lettertab[letters[i]] = "%" + set + ":~" + i + ",1%";
     }
 
-    console.log(code)
     for (var i = 0; i < code.length; i++) {
         if (lettertab[code[i]]) {
             codeobfu += lettertab[code[i]];
